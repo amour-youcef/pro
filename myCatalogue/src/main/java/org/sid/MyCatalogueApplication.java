@@ -27,14 +27,30 @@ public class MyCatalogueApplication implements CommandLineRunner{
 	produitRepository.save(new Produit(1,"ordi portable ",6500,25));
     produitRepository.save(new Produit(2,"imprimante hp ",500,60));
     produitRepository.save(new Produit(3,"smartphon s9",600,70));
+    produitRepository.save(new Produit(4,"Hp imprimante",600,70));
+    produitRepository.save(new Produit(5,"Ordi HP 5643 ",6500,54));
+    produitRepository.save(new Produit(6,"Imprimante HP 1122",345,11));
+    produitRepository.save(new Produit(7,"Smart Phone S9",1200,145));
     
-    Page<Produit> produits = produitRepository.findAll(PageRequest.of(0, 2));
+    Page<Produit> produits = produitRepository.findByDesignation("smartphon s9", PageRequest.of(0, 2));
+    		
     
     System.out.println(produits.getSize());
     System.out.println(produits.getTotalElements());
     System.out.println(produits.getTotalPages());
     
     produits.getContent().forEach(p->{
+    	System.out.println(p.toString());
+    });
+    
+    System.out.println("-------------------------------------------");
+    
+    Page<Produit> prods = produitRepository.chercher("%H%", 100, PageRequest.of(0, 2));
+    System.out.println(prods.getSize());
+    System.out.println(prods.getTotalElements());
+    System.out.println(prods.getTotalPages());
+    
+    prods.getContent().forEach(p->{
     	System.out.println(p.toString());
     });
 }
