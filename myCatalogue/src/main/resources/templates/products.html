@@ -38,6 +38,8 @@
 						<td th:text="${p.designation}"></td>
 						<td th:text="${p.prix}"></td>
 						<td th:text="${p.quantite}"></td>
+						<td><a class="btn btn-danger" 
+						th:href="@{deleteProduits(id=${p.id},page=${currentPage},size=${size},motCle=${motCle})}">Delete</a></td>
 					</tr>
 				</table>
 				<ul class="nav nav-pills" >

@@ -42,4 +42,10 @@ public class ProduitController {
 		
 	}
 	
+	@GetMapping(path="/deleteProduit")
+	public String delete(Long id,String motCle,String page,String size) {
+		produitRepository.deleteById(id);
+		return "redirect:/products?page="+page+"&motCle="+motCle+"&size="+size;
+	}
+	
 }
