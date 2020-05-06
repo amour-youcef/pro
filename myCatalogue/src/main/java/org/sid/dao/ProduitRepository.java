@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface ProduitRepository extends JpaRepository<Produit, Long> {
 
-	public Page<Produit> findByDesignation(String mc , Pageable pageable);
+	public Page<Produit> findByDesignationContains(String mc , Pageable pageable);
 	
 	@Query("select p from Produit p where p.designation like :x and p.prix>:y")
 	public Page<Produit> chercher(

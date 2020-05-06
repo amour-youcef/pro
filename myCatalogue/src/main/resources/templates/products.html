@@ -17,6 +17,15 @@
 		<div class="card">
 			<div class="card-header">List de produit</div>
 			<div class="card-body">
+			
+			<form th:action="@{products}" method="get">
+				<div class="mb-5">
+					<label>Mot Clé</label>
+					<input type="text" name="motCle"/>
+					<button class="btn btn-primary">Chercher</button>
+				</div>
+			</form>
+			
 				<table class="table">
 					<tr>
 						<th>ID</th>
@@ -24,13 +33,19 @@
 						<th>PRIX</th>
 						<th>QUANTITE</th>
 					</tr>
-					<tr th:each="p:${listProduits}">
+					<tr th:each="p:${pageProduits.content}">
 						<td th:text="${p.id}"></td>
 						<td th:text="${p.designation}"></td>
 						<td th:text="${p.prix}"></td>
 						<td th:text="${p.quantite}"></td>
 					</tr>
 				</table>
+				<ul class="nav nav-pills" >
+					<li th:each="page,status:${pages}">
+						<a th:class="${status.index == currentPage ? 'btn btn-primary':'btn'}" th:href="@{products(page=${status.index}, size=${size})}"
+						   th:text="${status.index}"></a>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>

@@ -32,7 +32,7 @@ public class MyCatalogueApplication implements CommandLineRunner{
     produitRepository.save(new Produit(6,"Imprimante HP 1122",345,11));
     produitRepository.save(new Produit(7,"Smart Phone S9",1200,145));
     
-    Page<Produit> produits = produitRepository.findByDesignation("smartphon s9", PageRequest.of(0, 2));
+    Page<Produit> produits = produitRepository.findByDesignationContains("smartphon s9", PageRequest.of(0, 2));
     		
     
     System.out.println(produits.getSize());
