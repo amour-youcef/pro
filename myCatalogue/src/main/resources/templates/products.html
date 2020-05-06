@@ -20,8 +20,8 @@
 			
 			<form th:action="@{products}" method="get">
 				<div class="mb-5">
-					<label>Mot Clé</label>
-					<input type="text" name="motCle"/>
+					<label class="control-label">Mot Clé</label>
+					<input type="text" name="motCle" th:value="${motCle}" class="form-control"/>
 					<button class="btn btn-primary">Chercher</button>
 				</div>
 			</form>
@@ -42,7 +42,8 @@
 				</table>
 				<ul class="nav nav-pills" >
 					<li th:each="page,status:${pages}">
-						<a th:class="${status.index == currentPage ? 'btn btn-primary':'btn'}" th:href="@{products(page=${status.index}, size=${size})}"
+						<a th:class="${status.index == currentPage ? 'btn btn-primary':'btn'}" th:href="@{products(page=${status.index}, size=${size},
+						               motCle=${motCle})}"
 						   th:text="${status.index}"></a>
 					</li>
 				</ul>
